@@ -43,7 +43,7 @@ function displayProducts(product) {
 
   // Create Link
   let elementA = document.createElement("a");
-  elementA.href = "product.html";
+  elementA.href = `product.html?id=${product._id}`;
   elementA.appendChild(article);
   document.querySelector("#items").appendChild(elementA);
 }
