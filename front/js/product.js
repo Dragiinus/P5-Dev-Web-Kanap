@@ -1,7 +1,6 @@
 //  id retrieval
 let params = new URL(document.location).searchParams;
 let Getid = params.get("id");
-console.log(Getid);
 
 //  Exctract API Data
 function fetchProduct(Getid) {
@@ -17,7 +16,27 @@ function fetchProduct(Getid) {
     })
     .then(function(product) {
       displayKanap(product);
+      selectColor();
+      displayColor();
     })
+  }
+
+  function displayColor() {
+    // 
+    let elem = document.getElementById('addToCart');
+    elem.addEventListener('click', function() {
+      console.log(localStorage.getItem('color'));
+    });
+  }
+  
+  function selectColor() {
+    // Save Selected Color
+    let elem = document.getElementById('colors');
+    elem.addEventListener('change', function() {
+
+      localStorage.setItem("color", elem.value);
+      
+    });
   }
 
   function displayKanap(product) {
