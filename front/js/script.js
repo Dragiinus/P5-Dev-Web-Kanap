@@ -1,4 +1,4 @@
-//  Exctract API Data
+//  Call API Data
 fetch("http://localhost:3000/api/products")
   .then(function(res) {
     if (res.ok) {
@@ -6,7 +6,6 @@ fetch("http://localhost:3000/api/products")
     }
   })
   .then(function(products) {
-    console.log(products);
     for (let i = 0; i < products.length; i++) {
       displayProducts(products[i]);
     }
@@ -16,6 +15,7 @@ fetch("http://localhost:3000/api/products")
     // Une erreur est survenue
   });
 
+// Display Product
 function displayProducts(product) {
 
   // Create Descriptions
