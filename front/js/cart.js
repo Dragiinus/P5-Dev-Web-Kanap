@@ -42,7 +42,6 @@ function fetchProduct(cartItem) {
               window.location.reload();
             } else {
               localStorage.setItem('cart', JSON.stringify(cart));
-              console.log(cart);
 
               window.location.reload();
             }
@@ -207,10 +206,10 @@ function checkOrderForm(event) {
   // Check validity of each field of input
   let isFormValid = (
     checkValidity(contact.firstName)
-    &&checkValidity(contact.lastName)
-    &&checkIfFilled(contact.address)
-    &&checkValidity(contact.city)
-    &&checkEmailValidity(contact.email)
+    ||checkValidity(contact.lastName)
+    ||checkIfFilled(contact.address)
+    ||checkValidity(contact.city)
+    ||checkEmailValidity(contact.email)
   )
 
   // Display error message if first name is not correct
@@ -218,12 +217,20 @@ function checkOrderForm(event) {
     let firstNameError = document.getElementById('firstNameErrorMsg')
     let ErrorMsg = 'Veuillez saisir un prénom valide';
     firstNameError.innerHTML = ErrorMsg;
+  } else {
+    let firstNameError = document.getElementById('firstNameErrorMsg')
+    let ErrorMsg = ''
+    firstNameError.innerHTML = ErrorMsg;
   }
-
+  
   // Display error message if last name is not correct
   if (!checkValidity(contact.lastName)) {
     let lastNameError = document.getElementById('lastNameErrorMsg')
     let ErrorMsg = 'Veuillez saisir un nom valide';
+    lastNameError.innerHTML = ErrorMsg;
+  } else {
+    let lastNameError = document.getElementById('lastNameErrorMsg')
+    let ErrorMsg = '';
     lastNameError.innerHTML = ErrorMsg;
   }
 
@@ -232,6 +239,10 @@ function checkOrderForm(event) {
     let addressError = document.getElementById('addressErrorMsg')
     let ErrorMsg = 'Veuillez saisir une adresse valide';
     addressError.innerHTML = ErrorMsg;
+  } else {
+    let addressError = document.getElementById('addressErrorMsg')
+    let ErrorMsg = '';
+    addressError.innerHTML = ErrorMsg;
   }
 
   // Display error message if city is not correct
@@ -239,12 +250,20 @@ function checkOrderForm(event) {
     let cityError = document.getElementById('cityErrorMsg')
     let ErrorMsg = 'Veuillez saisir une ville valide';
     cityError.innerHTML = ErrorMsg;
+  } else {
+    let cityError = document.getElementById('cityErrorMsg')
+    let ErrorMsg = '';
+    cityError.innerHTML = ErrorMsg;
   }
 
   // Display error message if email is not correct
   if (!checkEmailValidity(contact.email)) {
     let emailError = document.getElementById('emailErrorMsg')
     let ErrorMsg = 'Veuillez saisir une adresse email valide';
+    emailError.innerHTML = ErrorMsg;
+  } else {
+    let emailError = document.getElementById('emailErrorMsg')
+    let ErrorMsg = '';
     emailError.innerHTML = ErrorMsg;
   }
   if (isFormValid) {
@@ -259,7 +278,7 @@ function checkIfFilled(value) {
 
 // Check that email is valid
 function checkEmailValidity(value) {
-  return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value);
+  return (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value))
 }
 
 // Check that first name, last name and city inputs are valid

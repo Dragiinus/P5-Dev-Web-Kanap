@@ -20,7 +20,6 @@ function fetchProduct(Getid) {
       // Select Product
       let selectedProduct = {
         id: product._id,
-        price: product.price
       }
       // Select color
       let selectedColor = selectColor(selectedProduct);
@@ -34,6 +33,8 @@ function fetchProduct(Getid) {
           window.alert('Veuillez sélectionner tous les champs');
         } else if (parseInt(selectedProduct.quantity) > 100) {
           window.alert('Vous ne pouvez pas choisir plus de 100 produits');
+        } else if (parseInt(selectedProduct.quantity) < 0) {
+          window.alert('Vous devez entrer un chiffre positif');
         } else {
           addProductToCart(event, selectedProduct);
           window.alert('L"article a bien été ajouté au panier');
@@ -122,6 +123,8 @@ function displayKanap(product) {
       localStorage.setItem('cart', JSON.stringify(cart));
     }
     }
+    localStorage.removeItem('.price');
+    // localStorage.clear();
   }
   
   fetchProduct(Getid);
